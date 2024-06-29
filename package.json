@@ -1,0 +1,14 @@
+{
+  "name": "viridian",
+  "version": "1.0.0",
+  "description": "Windows Tweaker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "PyKestrel",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.1.0"
+  }
+}
