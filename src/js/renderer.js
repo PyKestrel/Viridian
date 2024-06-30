@@ -4,6 +4,19 @@ const $ = require("jquery");
 const information = document.getElementById("info");
 information.innerText = `This app is using Chrome (v${window.versions.chrome()}), Node.js (v${window.versions.node()}), and Electron (v${window.versions.electron()})`;
 
+const units = ["bytes", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+
+function niceBytes(x) {
+  let l = 0,
+    n = parseInt(x, 10) || 0;
+
+  while (n >= 1024 && ++l) {
+    n = n / 1024;
+  }
+
+  return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
+}
+
 async function PS(param) {
   let ps = new PowerShell(param);
   // Handle process errors (e.g. powershell not found)
@@ -40,6 +53,21 @@ document.addEventListener("DOMContentLoaded", initialize);
 
 function RenderComputerInformation(data) {
   let ComputerInfo = JSON.parse(data);
-  console.log(ComputerInfo.CsDNSHostName);
-  console.log(ComputerInfo.CsProcessors[0].Name);
+  document.getElementById("device-name").innerText = ComputerInfo.CsDNSHostName;
+  document.getElementById("processor-name").innerText =
+    ComputerInfo.CsProcessors[0].Name;
+  document.getElementById("installed-ram").innerText =
+    ComputerInfo.CsTotalPhysicalMemory +
+    " (" +
+    niceBytes(parseInt(ComputerInfo.CsTotalPhysicalMemory, 10)) +
+    ")";
+  document.getElementById("device-id").innerText;
+  document.getElementById("architecture").innerText =
+    ComputerInfo.OsArchitecture;
+
+  // Windows Information
+  document.getElementById("windows-edition").innerText = ComputerInfo.OsName;
+  document.getElementById("windows-version").innerText = ComputerInfo.OsVersion;
+  document.getElementById("windows-build").innerText =
+    ComputerInfo.OsBuildNumber;
 }
