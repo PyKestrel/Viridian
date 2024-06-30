@@ -1,0 +1,23 @@
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #00856F;
+}
+
+body{
+    background-image:url("../img/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #757575;
+    background-color: #DCE9E2;
+}
