@@ -37,7 +37,8 @@ async function PS(param) {
 
 async function initialize() {
   let GetComputerInformation = new PowerShell(
-    "Get-ComputerInfo | ConvertTo-Json"
+    "Get-ComputerInfo | ConvertTo-Json",
+    {"executionPolicy":"Bypass"}
   );
 
   GetComputerInformation.on("output", (data) => {
