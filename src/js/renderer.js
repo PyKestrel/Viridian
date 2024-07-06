@@ -38,7 +38,7 @@ async function PS(param) {
 async function initialize() {
   let GetComputerInformation = new PowerShell(
     "Get-ComputerInfo | ConvertTo-Json",
-    {"executionPolicy":"Bypass"}
+    { executionPolicy: "Bypass" }
   );
 
   GetComputerInformation.on("output", (data) => {
@@ -71,4 +71,13 @@ function RenderComputerInformation(data) {
   document.getElementById("windows-version").innerText = ComputerInfo.OsVersion;
   document.getElementById("windows-build").innerText =
     ComputerInfo.OsBuildNumber;
+
+  document.getElementById("system-info-alert").classList.add("invisible");
 }
+
+var tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});

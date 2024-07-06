@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%; width: 100%">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,11 +18,13 @@
     <title>Viridian</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/custom.css".css">
+    <link rel="stylesheet" href="../node_modules/@xterm/xterm/css/xterm.css" />
+    <script src="../node_modules/@xterm/xterm/lib/xterm.js"></script>
   </head>
-  <body>
-    <div class="d-flex align-items-start">
+  <body style="height: 100%; width: 100%">
+    <div class="d-flex align-items-start w-100 h-100">
       <div
-        class="nav flex-column nav-pills mx-5 mt-5"
+        class="nav flex-column nav-pills mx-5 mt-5 h-100"
         id="v-pills-tab"
         role="tablist"
         aria-orientation="vertical"
@@ -40,45 +42,53 @@
           System Info
         </button>
         <hr class="border-bottom border-3 border-dark" />
-        <button
-          class="nav-link"
-          id="v-pills-windows-collapse-tab"
-          data-bs-toggle="collapse"
-          data-bs-target="#windows-collapse"
-          type="button"
-          role="tab"
-          aria-controls="windows-collapse"
-          aria-selected="false"
-        >
-          Windows
-        </button>
-
-        <div class="collapse" id="windows-collapse">
+        <div class="nav-item dropdown">
           <button
-            class="nav-link"
-            id="v-pills-windows-updates-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#v-pills-windows-updates"
+            class="nav-link dropdown-toggle"
+            id="v-pills-windows-collapse-tab"
+            data-bs-toggle="dropdown"
+            data-bs-target="#windows-collapse"
             type="button"
             role="tab"
-            aria-controls="v-pills-windows-updates"
-            aria-selected="false"
+            aria-controls="windows-collapse"
+            aria-expanded="false"
           >
-            Windows Updates
+            Windows
           </button>
+          <div class="dropdown-menu">
+            <div
+              class="nav flex-column nav-pills"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <button
+                class="dropdown-item"
+                id="v-pills-windows-updates-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-windows-updates"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-windows-updates"
+                aria-selected="false"
+              >
+                Updates
+              </button>
+              <button
+                class="dropdown-item"
+                id="v-pills-windows-privacy-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-windows-privacy"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-windows-privacy"
+                aria-selected="false"
+              >
+                Privacy
+              </button>
+            </div>
+          </div>
         </div>
-        <button
-          class="nav-link"
-          id="v-pills-messages-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#v-pills-messages"
-          type="button"
-          role="tab"
-          aria-controls="v-pills-messages"
-          aria-selected="false"
-        >
-          Messages
-        </button>
         <button
           class="nav-link"
           id="v-pills-settings-tab"
@@ -91,15 +101,31 @@
         >
           Settings
         </button>
+        <button
+          class="nav-link"
+          id="v-pills-terminal-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#v-pills-terminal"
+          type="button"
+          role="tab"
+          aria-controls="v-pills-terminal"
+          aria-selected="false"
+        >
+          Terminal
+        </button>
       </div>
       <div class="tab-content" id="v-pills-tabContent">
         <div
-          class="tab-pane fade show active mt-5"
+          class="tab-pane fade show active mt-5 h-100"
           id="v-pills-system-info"
           role="tabpanel"
           aria-labelledby="v-pills-system-info-tab"
           tabindex="0"
         >
+          <div class="alert alert-warning" role="alert" id="system-info-alert">
+            Retrieving System Information
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+          </div>
           <div class="row g-5">
             <div class="col">
               <div class="card mx-auto">
@@ -140,25 +166,150 @@
               </div>
             </div>
           </div>
-          <p id="info"></p>
+          <p id="info" class="fixed-bottom"></p>
         </div>
         <div
           class="tab-pane fade"
           id="v-pills-windows-updates"
           role="tabpanel"
           aria-labelledby="v-pills-windows-updates"
-          tabindex="0"
         >
-          Windows Updates :UWU:
+          <h1 class="display-6 pt-5">Windows Updates</h1>
+          <p class="lead">Gain more control over updates on your OS.</p>
+          <hr class="border-bottom border-3 border-dark" />
         </div>
         <div
           class="tab-pane fade"
-          id="v-pills-messages"
+          id="v-pills-windows-privacy"
           role="tabpanel"
-          aria-labelledby="v-pills-messages-tab"
-          tabindex="0"
+          aria-labelledby="v-pills-windows-privacy"
         >
-          ...
+          <h1 class="display-6 pt-5">Windows Privacy</h1>
+          <p class="lead">
+            Tighten operating system privacy by disabling Advertising IDs and
+            Telemetry. Manage location and activity tracking for enhanced
+            control.
+          </p>
+          <hr class="border-bottom border-3 border-dark" />
+          <div class="row g-5">
+            <div class="col-4">
+              <h4 class="pt-5 fw-light">Advertising</h4>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-advertising-id"
+                />
+                <label
+                  class="form-check-label"
+                  for="windows-privacy-advertising-id"
+                >
+                  Disable Windows Advertising ID
+                </label>
+              </div>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-bluetooth-advertising"
+                />
+                <label
+                  class="form-check-label"
+                  for="windows-privacy-bluetooth-advertising"
+                >
+                  Disable Bluetooth Advertising
+                </label>
+              </div>
+            </div>
+            <div class="col-4">
+              <h4 class="pt-5 fw-light">Cloud Service</h4>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-settings-sync"
+                />
+                <label
+                  class="form-check-label"
+                  for="windows-privacy-settings-sync"
+                >
+                  Disable Settings Sync
+                </label>
+              </div>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-cloud-message-sync"
+                />
+                <label
+                  class="form-check-label"
+                  for="windows-privacy-cloud-message-sync"
+                >
+                  Disable Cloud Message Sync
+                  <img
+                    src="img/bootstrap-icons-1.11.3/info-circle.svg"
+                    class="float-right"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                    title="This policy setting allows backup and restore of cellular text messages to Microsoft's cloud services.
+
+                  Disable this feature to avoid information being stored on servers outside of your organization's control."
+                  />
+                </label>
+              </div>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-scoobe"
+                />
+                <label class="form-check-label" for="windows-privacy-scoobe">
+                  Disable Second Chance Out Of Box Experience (SCOOBE)<img
+                    src="img/bootstrap-icons-1.11.3/info-circle.svg"
+                    class="float-right"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                    title="The users' initial interactions with the product immediately after upgrading the product and/or launching the product for the first time after upgrading."
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="col-4">
+              <h4 class="pt-5 fw-light">Telemetry</h4>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-"
+                />
+                <label class="form-check-label" for="windows-privacy-">
+                  Windows Privacy Setting
+                </label>
+              </div>
+            </div>
+            <div class="col-4">
+              <h4 class="pt-5 fw-light">Windows Privacy Title</h4>
+              <div class="form-check form-switch form-check-reverse pt-1">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="windows-privacy-"
+                  disabled
+                />
+                <label class="form-check-label" for="windows-privacy-">
+                  Windows Privacy Setting
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           class="tab-pane fade"
@@ -168,6 +319,21 @@
           tabindex="0"
         >
           ...
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-terminal"
+          role="tabpanel"
+          aria-labelledby="v-pills-terminal-tab"
+          tabindex="0"
+        >
+          <div id="terminal" style="width: 100%; height: 100%"></div>
+          <script>
+            var term = new window.Terminal({
+              cursorBlink: true,
+            });
+            term.open(document.getElementById("terminal"));
+          </script>
         </div>
       </div>
     </div>
