@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/custom.css".css">
     <link rel="stylesheet" href="../node_modules/@xterm/xterm/css/xterm.css" />
     <script src="../node_modules/@xterm/xterm/lib/xterm.js"></script>
+    <script src="js/templates/windows-options.js"></script>
+    <script src="js/json2html.js"></script>
   </head>
   <body style="height: 100%; width: 100%">
     <div class="d-flex align-items-start w-100 h-100">
@@ -177,6 +179,9 @@
           <h1 class="display-6 pt-5">Windows Updates</h1>
           <p class="lead">Gain more control over updates on your OS.</p>
           <hr class="border-bottom border-3 border-dark" />
+          <div class="row g-5">
+            <div class="col" id="windows-updates-general"></div>
+          </div>
         </div>
         <div
           class="tab-pane fade"
@@ -192,122 +197,17 @@
           </p>
           <hr class="border-bottom border-3 border-dark" />
           <div class="row g-5">
-            <div class="col-4">
+            <div class="col-4" id="windows-privacy-advertising">
               <h4 class="pt-5 fw-light">Advertising</h4>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-advertising-id"
-                />
-                <label
-                  class="form-check-label"
-                  for="windows-privacy-advertising-id"
-                >
-                  Disable Windows Advertising ID
-                </label>
-              </div>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-bluetooth-advertising"
-                />
-                <label
-                  class="form-check-label"
-                  for="windows-privacy-bluetooth-advertising"
-                >
-                  Disable Bluetooth Advertising
-                </label>
-              </div>
             </div>
-            <div class="col-4">
+            <div class="col-4" id="windows-privacy-cloud-service">
               <h4 class="pt-5 fw-light">Cloud Service</h4>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-settings-sync"
-                />
-                <label
-                  class="form-check-label"
-                  for="windows-privacy-settings-sync"
-                >
-                  Disable Settings Sync
-                </label>
-              </div>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-cloud-message-sync"
-                />
-                <label
-                  class="form-check-label"
-                  for="windows-privacy-cloud-message-sync"
-                >
-                  Disable Cloud Message Sync
-                  <img
-                    src="img/bootstrap-icons-1.11.3/info-circle.svg"
-                    class="float-right"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="right"
-                    title="This policy setting allows backup and restore of cellular text messages to Microsoft's cloud services.
-
-                  Disable this feature to avoid information being stored on servers outside of your organization's control."
-                  />
-                </label>
-              </div>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-scoobe"
-                />
-                <label class="form-check-label" for="windows-privacy-scoobe">
-                  Disable Second Chance Out Of Box Experience (SCOOBE)<img
-                    src="img/bootstrap-icons-1.11.3/info-circle.svg"
-                    class="float-right"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="right"
-                    title="The users' initial interactions with the product immediately after upgrading the product and/or launching the product for the first time after upgrading."
-                  />
-                </label>
-              </div>
             </div>
-            <div class="col-4">
+            <div class="col-4" id="windows-privacy-telemetry">
               <h4 class="pt-5 fw-light">Telemetry</h4>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-"
-                />
-                <label class="form-check-label" for="windows-privacy-">
-                  Windows Privacy Setting
-                </label>
-              </div>
             </div>
-            <div class="col-4">
-              <h4 class="pt-5 fw-light">Windows Privacy Title</h4>
-              <div class="form-check form-switch form-check-reverse pt-1">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="windows-privacy-"
-                  disabled
-                />
-                <label class="form-check-label" for="windows-privacy-">
-                  Windows Privacy Setting
-                </label>
-              </div>
+            <div class="col-4" id="windows-privacy-peripherals">
+              <h4 class="pt-5 fw-light">Peripherals</h4>
             </div>
           </div>
         </div>
@@ -340,4 +240,56 @@
     <script src="js/bootstrap.bundle.js"></script>
   </body>
   <script src="js/renderer.js"></script>
+  <script>
+    // J2H Template Engine
+
+    // Windows Options Template
+    let WinTemplate = {
+      "<>": "div",
+      class: "form-check form-switch form-check-reverse pt-1",
+      html: [
+        {
+          "<>": "input",
+          class: "form-check-input",
+          type: "checkbox",
+          value: "",
+          id: "${id}",
+          role: "switch",
+        },
+        {
+          "<>": "label",
+          class: "form-check-label",
+          for: "${id}",
+          text: "${label} ",
+          html: [
+            {
+              "<>": "img",
+              src: "img/bootstrap-icons-1.11.3/info-circle.svg",
+              class: "float-right",
+              "data-bs-toggle": "tooltip",
+              "data-bs-placement": "right",
+              title: "${tooltip}",
+            },
+          ],
+        },
+      ],
+    };
+
+    function BuildUIElements(PageCategory) {
+      WindowsOptions[PageCategory].forEach((element) => {
+        document.getElementById(element.category).innerHTML += json2html.render(
+          element,
+          WinTemplate
+        );
+      });
+    }
+    BuildUIElements("updates");
+    BuildUIElements("privacy");
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
 </html>

@@ -1,5 +1,7 @@
 const PowerShell = require("powershell");
 const $ = require("jquery");
+const path = require("path");
+const fs = require("fs");
 
 const information = document.getElementById("info");
 information.innerText = `This app is using Chrome (v${window.versions.chrome()}), Node.js (v${window.versions.node()}), and Electron (v${window.versions.electron()})`;
@@ -74,10 +76,3 @@ function RenderComputerInformation(data) {
 
   document.getElementById("system-info-alert").classList.add("invisible");
 }
-
-var tooltipTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl);
-});
