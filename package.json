@@ -12,7 +12,6 @@
     "@xterm/xterm": "^5.5.0",
     "electron": "^24.8.8",
     "jquery": "^3.7.1",
-    "node-pty": "^1.0.0",
     "powershell": "^2.3.2",
     "ws": "^8.18.0"
   }

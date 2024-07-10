@@ -45,7 +45,7 @@ const WindowsOptions = {
     {
       label: "Disable Bluetooth Advertising",
       id: "windows-privacy-bluetooth-advertising",
-      tooltip: "",
+      tooltip: "This prevents your device from being discoverable by other Bluetooth devices in range.",
       category: "windows-privacy-advertising",
     },
     {
