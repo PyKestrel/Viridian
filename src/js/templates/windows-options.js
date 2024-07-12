@@ -6,12 +6,14 @@ const WindowsOptions = {
       tooltip:
         "Disables Windows Update from Automatically Restarting Your Computer When There's Pending Updates",
       category: "windows-updates-general",
+      pwsh: "",
     },
     {
       label: "Disable Automatic Updates",
       id: "windows-update-auto-updates",
       tooltip: "Prevents Windows Update From Updating The OS",
       category: "windows-updates-general",
+      pwsh: "",
     },
     {
       label: "Disable Delivery Optimization",
@@ -19,6 +21,7 @@ const WindowsOptions = {
       tooltip:
         "Disables Delivery Optimization, Preventing The Service From Installing And Updating Updates In The Background",
       category: "windows-updates-general",
+      pwsh: "",
     },
     {
       label: "Disable Feature Updates",
@@ -26,6 +29,7 @@ const WindowsOptions = {
       tooltip:
         "Disables Feature Updates, Allowing Feature Updates May Reset The Customizations You Have Set Previously",
       category: "windows-updates-general",
+      pwsh: "",
     },
     {
       label: "Disable Windows Insider",
@@ -33,6 +37,7 @@ const WindowsOptions = {
       tooltip:
         "Disables Windows Insider, Removing The Telemetry & Data Collection Associated With It",
       category: "windows-updates-general",
+      pwsh: "",
     },
   ],
   privacy: [
@@ -41,18 +46,22 @@ const WindowsOptions = {
       id: "windows-privacy-advertising-id",
       tooltip: "",
       category: "windows-privacy-advertising",
+      pwsh: "Disable-WindowsAdvertisingID.ps1",
     },
     {
       label: "Disable Bluetooth Advertising",
       id: "windows-privacy-bluetooth-advertising",
-      tooltip: "This prevents your device from being discoverable by other Bluetooth devices in range.",
+      tooltip:
+        "This prevents your device from being discoverable by other Bluetooth devices in range.",
       category: "windows-privacy-advertising",
+      pwsh: "Disable-WindowsBluetoothAdvertising.ps1",
     },
     {
       label: "Disable Settings Sync",
       id: "windows-privacy-settings-sync",
       tooltip: "",
       category: "windows-privacy-cloud-service",
+      pwsh: "",
     },
     {
       label: "Disable Cloud Message Sync",
@@ -60,6 +69,7 @@ const WindowsOptions = {
       tooltip:
         "This policy setting allows backup and restore of cellular text messages to Microsoft's cloud services. Disable this feature to avoid information being stored on servers outside of your organization's control.",
       category: "windows-privacy-cloud-service",
+      pwsh: "",
     },
     {
       label: "Disable Second Chance Out Of Box Experience (SCOOBE)",
@@ -67,6 +77,7 @@ const WindowsOptions = {
       tooltip:
         "The users' initial interactions with the product immediately after upgrading the product and/or launching the product for the first time after upgrading.",
       category: "windows-privacy-cloud-service",
+      pwsh: "",
     },
     {
       label: "Disable Key Management System Telemetry",
@@ -74,24 +85,28 @@ const WindowsOptions = {
       tooltip:
         "Stops KMS client from verifying activation online, preventing data from being sent to Microsoft even if not activated",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Customer Experience Improvement Program",
       id: "windows-privacy-ceip",
       tooltip: "Disables Customer Experience Improvement Program (CEIP)",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Diagnostic Tracing",
       id: "windows-privacy-diagnostic-tracing",
       tooltip: "Disables Diagnostic Tracing, Affecting All System Events",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Input Telemetry",
       id: "windows-privacy-input-telemetry",
       tooltip: "Disables Text, Ink and Handwriting Telemetry",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Telemetry and Data Collection",
@@ -99,12 +114,14 @@ const WindowsOptions = {
       tooltip:
         "Disables Data Collection & Telemetry Defined In The OS Policies",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Activity Feed",
       id: "windows-privacy-activity-feed",
       tooltip: "Disables Activity Feed in Task View",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Most Used Application Tracking",
@@ -112,6 +129,7 @@ const WindowsOptions = {
       tooltip:
         "Disables Ability For Windows To Track Which Apps You Track Frequently",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Experimentation",
@@ -119,12 +137,14 @@ const WindowsOptions = {
       tooltip:
         "Disables The Ability for Microsoft to Use Your Computer as a Test for Certain Features",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Find My Device",
       id: "windows-privacy-find-my-device",
       tooltip: "Disables The Find My Device Feature (Location Tracking)",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable LockScreen Camera",
@@ -132,12 +152,14 @@ const WindowsOptions = {
       tooltip:
         "Disables The Ability For The OS to Access Your Camera At The LockScreen",
       category: "windows-privacy-peripherals",
+      pwsh: "",
     },
     {
       label: "Disable Online Speech Recognition",
       id: "windows-privacy-speech-recognition",
       tooltip: "Disables The Ability For The OS To Use Speech Recognition",
       category: "windows-privacy-cloud-service",
+      pwsh: "",
     },
     {
       label: "Disable Performance Tracking",
@@ -145,18 +167,21 @@ const WindowsOptions = {
       tooltip:
         "Disables Perf Tracking, Responsiveness Events Are Not Processed.",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable Malicious Software Removal Tool Telemetry",
       id: "windows-privacy-msrt-telemetry",
       tooltip: "Disable Malicious Software Removal Tool Telemetry",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
     {
       label: "Disable PowerShell Core Telemetry",
       id: "windows-privacy-pwsh-core",
       tooltip: "Disable PowerShell Core Installations Telemetry",
       category: "windows-privacy-telemetry",
+      pwsh: "",
     },
   ],
 };

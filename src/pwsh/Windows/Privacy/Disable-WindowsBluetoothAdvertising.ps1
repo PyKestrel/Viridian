@@ -1,4 +1,4 @@
-Set-ItemProperty -Path HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth -Name AllowAdvertising -Value 0 -Force
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth -Name AllowAdvertising -Value 0 -Force
 
 <#
 .DESCRIPTION
