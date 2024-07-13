@@ -1,6 +1,6 @@
 <#
 .DESCRIPTION
-    This script disables Bluetooth advertising by modifying the Windows Registry.
+    This script disables Windows Feature Updates by modifying the Windows Registry.
 #>
 # Check if the current user is not an administrator
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -9,9 +9,9 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     # Exit the current script execution
     exit;
 }
-# Disable Bluetooth advertising
-$registryPath = "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth"
-$registryName = "AllowAdvertising"
-$registryValue = 0
-# Set the registry value to disable Bluetooth advertising
+# Disable Windows Feature Updates
+$registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+$registryName = "DeferFeatureUpdates"
+$registryValue = 1
+# Set the registry value to disable Windows Feature Updates
 New-ItemProperty -Path $registryPath -Name $registryName -Value $registryValue -PropertyType DWORD -Force

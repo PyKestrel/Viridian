@@ -1,6 +1,15 @@
 <#
+.SYNOPSIS
+Disables Windows diagnostic tracing.
+
 .DESCRIPTION
-    This script disables Bluetooth advertising by modifying the Windows Registry.
+This script disables diagnostic tracing in the Windows registry.
+
+.PARAMETER None
+
+.EXAMPLE
+Disable-WindowsDiagnosticTracing.ps1
+This example runs the script to disable Windows diagnostic tracing.
 #>
 # Check if the current user is not an administrator
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -9,9 +18,4 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     # Exit the current script execution
     exit;
 }
-# Disable Bluetooth advertising
-$registryPath = "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth"
-$registryName = "AllowAdvertising"
-$registryValue = 0
-# Set the registry value to disable Bluetooth advertising
-New-ItemProperty -Path $registryPath -Name $registryName -Value $registryValue -PropertyType DWORD -Force
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Diagnostics\Performance" -Name "DisableDiagnosticTracing" -Value 1 -PropertyType DWORD -Force

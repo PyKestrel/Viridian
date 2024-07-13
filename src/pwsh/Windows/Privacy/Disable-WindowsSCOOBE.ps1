@@ -1,6 +1,10 @@
 <#
+.SYNOPSIS
+Disables the Windows SCOOBE system setting.
+
 .DESCRIPTION
-    This script disables Bluetooth advertising by modifying the Windows Registry.
+This script disables the Windows SCOOBE (System Configuration Observer and Operations Behavior Engine) system setting by modifying the registry.
+
 #>
 # Check if the current user is not an administrator
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -9,9 +13,4 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     # Exit the current script execution
     exit;
 }
-# Disable Bluetooth advertising
-$registryPath = "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth"
-$registryName = "AllowAdvertising"
-$registryValue = 0
-# Set the registry value to disable Bluetooth advertising
-New-ItemProperty -Path $registryPath -Name $registryName -Value $registryValue -PropertyType DWORD -Force
+New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement" -Name "ScoobeSystemSettingEnabled" -Value 0 -PropertyType DWORD -Force

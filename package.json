@@ -14,5 +14,10 @@
     "jquery": "^3.7.1",
     "powershell": "^2.3.2",
     "ws": "^8.18.0"
+  },
+  "build": {
+    "win": {
+      "requestedExecutionLevel": "requireAdministrator"
+    }
   }
 }
