@@ -4,20 +4,27 @@
   "description": "Windows Tweaker",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "PyKestrel",
   "license": "MIT",
   "dependencies": {
     "@xterm/xterm": "^5.5.0",
-    "electron": "^24.8.8",
     "jquery": "^3.7.1",
     "powershell": "^2.3.2",
     "ws": "^8.18.0"
   },
   "build": {
     "win": {
-      "requestedExecutionLevel": "requireAdministrator"
+      "requestedExecutionLevel": "requireAdministrator",
+      "target": [
+        "portable"
+      ]
     }
+  },
+  "devDependencies": {
+    "electron": "^24.8.8"
   }
 }
