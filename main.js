@@ -9,7 +9,7 @@ const createWindow = () => {
       nodeIntegration: true,
       contextIsolation: false,
       preload: path.join(__dirname, "preload.js"),
-      icon: __dirname + '/src/img/icon.jpg',
+      icon: __dirname + "/src/img/icon.jpg",
     },
   });
 
