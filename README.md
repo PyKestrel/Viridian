@@ -1,3 +1,4 @@
+![Viridian](https://github.com/user-attachments/assets/09dcaf3f-1bd5-4c19-b204-c3d1f5753beb)
 # Viridian: Reclaim Your OS
 
 Viridian is a multi-platform application built on Electron, designed to empower you to customize your operating system for optimal performance, security, and privacy. Featuring a modern and user-friendly web interface crafted with Bootstrap, Viridian allows you to easily remove unnecessary features and bloatware that can slow down your system and expose vulnerabilities.
