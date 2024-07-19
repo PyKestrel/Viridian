@@ -45,6 +45,7 @@ async function initialize() {
 
   GetComputerInformation.on("output", (data) => {
     RenderComputerInformation(data);
+    BuildSystemInformationUIElements(data);
   });
 
   GetComputerInformation.on("error", (err) => {
