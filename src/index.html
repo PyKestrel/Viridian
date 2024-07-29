@@ -127,7 +127,7 @@
             Retrieving System Information
             <div class="spinner-border spinner-border-sm" role="status"></div>
           </div>
-          <div class="row g-5" style="max-width: 80%;">
+          <div class="row g-5" style="max-width: 80%">
             <div class="col">
               <div class="card mx-auto">
                 <h5 class="card-header">Device Specifications</h5>
@@ -166,9 +166,11 @@
                 </ul>
               </div>
             </div>
-            <div class="row g-5" id="networkadapters" style="max-width: 90%;">
-
-            </div>
+            <div
+              class="row g-5"
+              id="networkadapters"
+              style="max-width: 90%"
+            ></div>
           </div>
           <p id="info" class="fixed-bottom"></p>
         </div>
@@ -224,6 +226,33 @@
         </div>
         <div
           class="tab-pane fade"
+          id="v-pills-qol"
+          role="tabpanel"
+          aria-labelledby="v-pills-qol-tab"
+          tabindex="0"
+        >
+          ...
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-security"
+          role="tabpanel"
+          aria-labelledby="v-pills-security-tab"
+          tabindex="0"
+        >
+          ...
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-performance"
+          role="tabpanel"
+          aria-labelledby="v-pills-performance-tab"
+          tabindex="0"
+        >
+          ...
+        </div>
+        <div
+          class="tab-pane fade"
           id="v-pills-terminal"
           role="tabpanel"
           aria-labelledby="v-pills-terminal-tab"
@@ -270,31 +299,75 @@
       ],
     };
 
-    let NetworkAdapters = {"<>":"div","class":"col","html":[
-    {"<>":"div","class":"card mx-auto","html":[
-        {"<>":"h5","class":"card-header","text":"Network Adapter"},
-        {"<>":"ul","class":"list-group list-group-flush","html":[
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"description","text":"${Description}"}
-              ]},
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"ConnectionID","text":"${ConnectionID}"}
-              ]},
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"DHCPEnabled","text":"${DHCPEnabled}"}
-              ]},
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"DHCPServer","text":"${DHCPServer}"}
-              ]},
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"ConnectionStatus","text":"${ConnectionStatus}"}
-              ]},
-            {"<>":"li","class":"list-group-item","html":[
-                {"<>":"span","id":"IPAddresses","text":"${IPAddresses}"}
-              ]}
-          ]}
-      ]}
-  ]};
+    let NetworkAdapters = {
+      "<>": "div",
+      class: "col",
+      html: [
+        {
+          "<>": "div",
+          class: "card mx-auto",
+          html: [
+            { "<>": "h5", class: "card-header", text: "Network Adapter" },
+            {
+              "<>": "ul",
+              class: "list-group list-group-flush",
+              html: [
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    { "<>": "span", id: "description", text: "${Description}" },
+                  ],
+                },
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    {
+                      "<>": "span",
+                      id: "ConnectionID",
+                      text: "${ConnectionID}",
+                    },
+                  ],
+                },
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    { "<>": "span", id: "DHCPEnabled", text: "${DHCPEnabled}" },
+                  ],
+                },
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    { "<>": "span", id: "DHCPServer", text: "${DHCPServer}" },
+                  ],
+                },
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    {
+                      "<>": "span",
+                      id: "ConnectionStatus",
+                      text: "${ConnectionStatus}",
+                    },
+                  ],
+                },
+                {
+                  "<>": "li",
+                  class: "list-group-item",
+                  html: [
+                    { "<>": "span", id: "IPAddresses", text: "${IPAddresses}" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
 
     function BuildUIElements(PageCategory) {
       WindowsOptions[PageCategory].forEach((element) => {
@@ -305,14 +378,12 @@
       });
     }
 
-    function BuildSystemInformationUIElements(SystemInformation){
+    function BuildSystemInformationUIElements(SystemInformation) {
       SystemInformation = JSON.parse(SystemInformation);
-      console.log(SystemInformation.CsNetworkAdapters)
+      console.log(SystemInformation.CsNetworkAdapters);
       SystemInformation.CsNetworkAdapters.forEach((element) => {
-        document.getElementById("networkadapters").innerHTML += json2html.render(
-          element,
-          NetworkAdapters
-        );
+        document.getElementById("networkadapters").innerHTML +=
+          json2html.render(element, NetworkAdapters);
       });
     }
 
