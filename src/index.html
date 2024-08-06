@@ -128,6 +128,18 @@
         </div>
         <button
           class="nav-link"
+          id="v-pills-diagnostics-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#v-pills-diagnostics"
+          type="button"
+          role="tab"
+          aria-controls="v-pills-diagnostics"
+          aria-selected="false"
+        >
+          Diagnostics
+        </button>
+        <button
+          class="nav-link"
           id="v-pills-settings-tab"
           data-bs-toggle="pill"
           data-bs-target="#v-pills-settings"
@@ -262,18 +274,32 @@
         </div>
         <div
           class="tab-pane fade"
-          id="v-pills-qol"
+          id="v-pills-windows-qol"
           role="tabpanel"
-          aria-labelledby="v-pills-qol-tab"
+          aria-labelledby="v-pills-windows-qol-tab"
           tabindex="0"
         >
           ...
         </div>
         <div
           class="tab-pane fade"
-          id="v-pills-security"
+          id="v-pills-diagnostics"
           role="tabpanel"
-          aria-labelledby="v-pills-security-tab"
+          aria-labelledby="v-pills-diagnostics-tab"
+          tabindex="0"
+        >
+          <h1 class="display-6 pt-5">Windows Diagnostics</h1>
+          <p class="lead">
+            Perform Windows Diagnostics to identify and resolve issues with
+            Windows.
+          </p>
+          <hr class="border-bottom border-3 border-dark" />
+        </div>
+        <div
+          class="tab-pane fade"
+          id="v-pills-windows-security"
+          role="tabpanel"
+          aria-labelledby="v-pills-windows-security-tab"
           tabindex="0"
         >
           <h1 class="display-6 pt-5">Windows Security</h1>
@@ -286,9 +312,9 @@
         </div>
         <div
           class="tab-pane fade"
-          id="v-pills-performance"
+          id="v-pills-windows-performance"
           role="tabpanel"
-          aria-labelledby="v-pills-performance-tab"
+          aria-labelledby="v-pills-windows-performance-tab"
           tabindex="0"
         >
           ...
